@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เนื้อหาเรียนรู้ | 30111-2022 เทคนิคการควบคุมคุณภาพ</title>
+    <style>
+        /* รูปแบบพื้นฐาน */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        .header-section {
+            background-color: #38761d;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .course-title {
+            font-size: 1.2em;
+            margin-left: 20px;
+            padding-top: 50px;
+        }
+
+        .nav-menu {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #000;
+            background-color: #add8e6;
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 20px;
+            border: 2px solid #000;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a.active {
+            background-color: #00ffff;
+            border: 2px solid #000;
+        }
+
+        .nav-menu a:not(.active):hover {
+            background-color: #87ceeb;
+        }
+
+        .quiz-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background-color: #00ffff;
+            color: #000;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            clip-path: polygon(50% 0%, 90% 20%, 100% 50%, 90% 80%, 70% 100%, 30% 100%, 10% 80%, 0% 50%, 10% 20%, 30% 0%);
+            border: none;
+            cursor: pointer;
+            line-height: 1.2;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ส่วนเนื้อหาหลัก (Content Area) */
+        .content-section {
+            background-color: #89cff0;
+            padding: 40px;
+            min-height: 80vh;
+            box-sizing: border-box;
+            color: #000;
+            display: flex;
+            
+            
+            /* จัดโครงสร้าง 2 คอลัมน์ */
+        }
+
+        /* เมนูย่อยด้านซ้าย (Sidebar) */
+        .sidebar {
+            width: 280px;
+            /* เพิ่มความกว้างเพื่อรองรับหัวข้อที่ยาวขึ้น */
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            flex-shrink: 0;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: #38761d;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            padding: 8px 0;
+            /* ลด padding เล็กน้อย */
+            border-bottom: 1px dotted #eee;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.current-chapter {
+            background-color: #e0f7fa;
+            color: #008080;
+            font-weight: bold;
+            padding-left: 5px;
+        }
+
+        /* พื้นที่เนื้อหาหลักด้านขวา */
+        .main-content {
+            flex-grow: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content h2 {
+            text-align: center;
+            color: #38761d;
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #38761d;
+        }
+
+        .main-content h3 {
+            color: #008080;
+            margin-top: 30px;
+        }
+
+        .main-content p {
+            line-height: 1.6;
+            text-indent: 30px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        /* --- Fade + Slide Up Animation --- */
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-section {
+    animation: fadeSlide 0.9s ease-out;
+}
+
+.sidebar {
+    animation: fadeSlide 1.1s ease-out;
+}
+
+.main-content {
+    animation: fadeSlide 1.3s ease-out;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header-section">
+        <nav class="nav-menu">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="learning_content.html" class="active">เนื้อหาเรียนรู้</a>
+            <a href="about.html">เกี่ยวกับเรา</a>
+            <a href="contact.html">ติดต่อเรา</a>
+        </nav>
+
+        <div class="course-title">
+            30111-2022 เทคนิคการควบคุมคุณภาพ
+        </div>
+
+        <button class="quiz-button">
+            ทำแบบทดสอบ
+        </button>
+    </div>
+
+    <div class="content-section">
+
+       <!-- Sidebar สารบัญแบบย่อ/ขยายครบทั้งเอกสาร -->
+<style>
+  .sidebar { width: 320px; max-width: 100%; padding: 16px; background:#f7f9f7; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); font-family: Arial, sans-serif }
+  .sidebar h3 { margin:0 0 12px 0; font-size:1.15rem; color:#2b5f2b }
+  .chapter { margin-bottom:8px }
+  .chapter-title { display:flex; align-items:center; justify-content:space-between; padding:8px; cursor:pointer; border-radius:6px }
+  .chapter-title:hover { background:rgba(56,118,29,0.05) }
+  .chapter-title .title-left { display:flex; gap:8px; align-items:center }
+  .chapter-title .badge { font-size:0.85rem; color:#38761d }
+  .toggle-btn { font-weight:600; color:#38761d }
+  .sub-items { display:none; margin-left:8px; margin-top:6px; padding-left:8px; border-left:2px solid rgba(56,118,29,0.06) }
+  .sub-items a { display:block; padding:6px 4px; text-decoration:none; color:#1f3b1f; font-size:0.95rem }
+  .sub-items a:hover { text-decoration:underline }
+  .controls { display:flex; gap:8px; margin-bottom:10px }
+  .btn { background:#fff; border:1px solid rgba(0,0,0,0.06); padding:6px 8px; border-radius:6px; cursor:pointer; font-size:0.85rem }
+  .btn:hover { box-shadow:0 1px 4px rgba(0,0,0,0.06) }
+  /* สำหรับสถานะเปิด */
+  .open > .sub-items { display:block }
+</style>
+
+<div class="sidebar" id="course-sidebar">
+  <h3>สารบัญเนื้อหา</h3>
+
+  <div class="controls">
+    <button class="btn" id="expand-all">ขยายทั้งหมด</button>
+    <button class="btn" id="collapse-all">ย่อทั้งหมด</button>
+  </div>
+
+  <!-- บทที่ 0 - บทคัดย่อ -->
+  <div class="chapter" data-chapter="abstract">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทคัดย่อ</span></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#abstract">บทคัดย่อ (Abstract)</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 1 -->
+  <div class="chapter" data-chapter="chapter1">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 1</span><strong>การเพิ่มประสิทธิภาพโดย TPM</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter1">บทที่ 1: การเพิ่มประสิทธิภาพโดย TPM</a>
+      <a href="#chapter1-1">1.1 แนวทางเพิ่มประสิทธิภาพการผลิต</a>
+      <a href="#chapter1-2">1.2 เป้าหมายขององค์กร</a>
+      <a href="#chapter1-3">1.3 วิวัฒนาการและการบำรุงรักษาอย่างเป็นระบบ</a>
+      <a href="#chapter1-4">1.4 คำนิยามของ TPM และความร่วมมือ</a>
+      <a href="#chapter1-5">1.5 TPM สู่เหตุขัดข้องเป็นศูนย์</a>
+      <a href="#chapter1-6">1.6 ประสิทธิภาพโดยรวมของเครื่องจักร (OEE)</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 2 -->
+  <div class="chapter" data-chapter="chapter2">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 2</span><strong>ประเภทและการบริหารงานบำรุงรักษา</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter2">บทที่ 2: ประเภทและการบริหารงานบำรุงรักษา</a>
+      <a href="#chapter2-1">2.1 การบำรุงรักษาเชิงป้องกัน (PM)</a>
+      <a href="#chapter2-2">2.2 การบำรุงรักษาหลังเหตุขัดข้อง (BM)</a>
+      <a href="#chapter2-3">2.3 การบำรุงเชิงแก้ไขปรับปรุง (CM)</a>
+      <a href="#chapter2-4">2.4 การป้องกันการบำรุงรักษา (MP)</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 3 -->
+  <div class="chapter" data-chapter="chapter3">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 3</span><strong>ข้อมูลและการใช้ประโยชน์จากการบำรุงรักษา</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter3">บทที่ 3: ข้อมูลและการใช้ประโยชน์จากการบำรุงรักษา</a>
+      <a href="#chapter3-1">3.1 ประโยชน์ของข้อมูล</a>
+      <a href="#chapter3-2">3.2 เป้าหมายและวัตถุประสงค์</a>
+      <a href="#chapter3-3">3.3 ลักษณะของข้อมูลที่ดี</a>
+      <a href="#chapter3-4">3.4 ประเภทและการบันทึกข้อมูล</a>
+      <a href="#chapter3-5">3.5 การใช้ประโยชน์จากข้อมูล (PDCA)</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 4 -->
+  <div class="chapter" data-chapter="chapter4">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 4</span><strong>การวางแผนงานบำรุงรักษา</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter4">บทที่ 4: การวางแผนงานบำรุงรักษา</a>
+      <a href="#chapter4-1">4.1 คุณลักษณะของวัตถุประสงค์ที่ดี</a>
+      <a href="#chapter4-2">4.2 สิ่งที่ต้องพิจารณาขณะวางแผน</a>
+      <a href="#chapter4-3">4.3 สาเหตุที่ทำให้การวางแผนบกพร่อง</a>
+      <a href="#chapter4-4">4.4 ใครคือผู้วางแผน</a>
+      <a href="#chapter4-5">4.5 คุณลักษณะของแผนที่ดี</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 5 -->
+  <div class="chapter" data-chapter="chapter5">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 5</span><strong>ระบบบริหารคุณภาพ ISO</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter5">บทที่ 5: ระบบบริหารคุณภาพ ISO</a>
+      <a href="#chapter5" class="chapter-title">หน่วยที่ 5: งานตรวจปรับเครื่องจักรกล</a>
+        <a href="#chapter5-1">5.1 งานขูด</a>
+        <a href="#chapter5-2">5.2 ชนิดของเหล็กขูด</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 6 -->
+  <div class="chapter" data-chapter="chapter6">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 6</span><strong>การบำรุงรักษาด้วยตนเอง</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter6">บทที่ 6: การบำรุงรักษาด้วยตนเอง</a>
+      <a href="#chapter6-1">6.1 เบื้องหลังความจำเป็น</a>
+      <a href="#chapter6-2">6.2 ความรวมมือของฝ่ายผลิตและบำรุงรักษา</a>
+      <a href="#chapter6-3">6.3 หน้าที่ความรับผิดชอบ</a>
+      <a href="#chapter6-4">6.5 สิบสิงกุญแจสู่ความสำเร็จ</a>
+      <a href="#chapter6-5">6.6 ขั้นที่ 1 : การทำความสะอาดขั้นต้น</a>
+      <a href="#chapter6-6">6.7 ขั้นที่ 2 : มาตรการเกี่ยวกับสาเหตุ</a>
+      <a href="#chapter6-7">6.8 ขั้นที่ 3 : กำหนดมาตรการ</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 7 -->
+  <div class="chapter" data-chapter="chapter7">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 7</span><strong>การกำหนดมาตรฐานในการบำรุงรักษา</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter7">บทที่ 7: การกำหนดมาตรฐานในการบำรุงรักษา</a>
+      <a href="#chapter7-1">7.1 ความหมายและจุดมุ่งหมาย</a>
+      <a href="#chapter7-2">7.2 การจำแนกประเภทของมาตรฐาน</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 8 -->
+  <div class="chapter" data-chapter="chapter8">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 8</span><strong>การควบคุมและการวัดผลงานการบำรุงรักษา</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter8">บทที่ 8: การควบคุมและการวัดผลงานการบำรุงรักษา</a>
+      <a href="#chapter8-1">8.1 วัตถุประสงค์ของการควบคุมงาน</a>
+      <a href="#chapter8-2">8.2 ปัจจัยที่มีผลกระทบ</a>
+      <a href="#chapter8-3">8.3 เครื่องจักรเพื่อการผลิต</a>
+      <a href="#chapter8-4">8.4 วัสดุบำรุงรักษาและอะไหล่</a>
+      <a href="#chapter8-5">8.5 การควบคุมทางด้านข้อมูล</a>
+      <a href="#chapter8-6">8.6 การวัดผลบำรุงรักษา</a>
+      <a href="#chapter8-7">8.7 บทสรุปและระดับของการควบคุม</a>
+    </div>
+  </div>
+
+  <!-- บทที่ 9 -->
+  <div class="chapter" data-chapter="chapter9">
+    <div class="chapter-title">
+      <div class="title-left"><span class="badge">บทที่ 9</span><strong>การประยุกต์เทคนิควิศวกรรมและการวัดประสิทธิผล</strong></div>
+      <div class="toggle-btn">◁</div>
+    </div>
+    <div class="sub-items">
+      <a href="#chapter9">บทที่ 9: การประยุกต์เทคนิควิศวกรรมและการวัดประสิทธิผล</a>
+      <a href="#chapter9-1">9.1 เทคนิควิศวกรรม คืออะไร</a>
+      <a href="#chapter9-2">9.2 จุดสำคัญในการควบคุมสถานประกอบการ</a>
+      <a href="#chapter9-3">9.3 การวัดการทำงานในการบำรุงรักษา</a>
+      <a href="#chapter9-4">9.4 การทำให้เป็นมาตรฐานเดียวกัน</a>
+      <a href="#chapter9-5">9.5 ประเภทของวัสดุเพื่อการบำรุงรักษา</a>
+      <a href="#chapter9-6">9.6 การวัดประสิทธิผล</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    const sidebar = document.getElementById('course-sidebar');
+    const chapters = sidebar.querySelectorAll('.chapter');
+
+    chapters.forEach(ch => {
+      const title = ch.querySelector('.chapter-title');
+      const toggle = title.querySelector('.toggle-btn');
+      title.addEventListener('click', () => {
+        const isOpen = ch.classList.toggle('open');
+        toggle.textContent = isOpen ? '▽' : '◁';
+      });
+    });
+
+    // ปุ่มขยาย/ย่อทั้งหมด
+    document.getElementById('expand-all').addEventListener('click', () => {
+      chapters.forEach(ch => { ch.classList.add('open'); ch.querySelector('.toggle-btn').textContent = '▽'; });
+    });
+    document.getElementById('collapse-all').addEventListener('click', () => {
+      chapters.forEach(ch => { ch.classList.remove('open'); ch.querySelector('.toggle-btn').textContent = '◁'; });
+    });
+
+    // ถ้าต้องการให้เปิด chapter ตาม fragment hash ของ URL
+    function openFromHash(){
+      const hash = location.hash.replace('#','');
+      if(!hash) return;
+      const target = sidebar.querySelector(`a[href="#${hash}"]`);
+      if(target){
+        // เปิดทั้ง chain ที่มีลิงก์
+        const parentSub = target.closest('.sub-items');
+        if(parentSub){
+          const parentChapter = parentSub.parentElement;
+          parentChapter.classList.add('open');
+          parentChapter.querySelector('.toggle-btn').textContent = '▽็';
+          // เลื่อนมาให้เห็น (ถ้าใช้ในหน้าที่ยาว)
+          setTimeout(()=> target.scrollIntoView({behavior:'smooth', block:'center'}),150);
+        }
+      }
+    }
+
+    window.addEventListener('hashchange', openFromHash);
+    // เปิดตาม hash ตอนโหลดครั้งแรก
+    openFromHash();
+  })();
+</script>
+
+
+
+        <div class="main-content">
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+
+                                <div id="abstract">
+                                    <h2>บทคัดย่อ (Abstract)</h2>
+                                    <p>วิชานี้เป็นส่วนหนึ่งของหลักสูตรที่มุ่งเน้นการทำความเข้าใจและการประยุกต์ใช้เทคนิคต่างๆ
+                                        ในการควบคุมคุณภาพ (Quality Control: QC) ในกระบวนการผลิตและบริการ
+                                        โดยครอบคลุมหลักการพื้นฐาน สถิติสำหรับงานควบคุมคุณภาพ และเครื่องมือ 7 ชนิด (7 QC
+                                        Tools) เพื่อให้ผู้เรียนสามารถวิเคราะห์ปัญหาด้านคุณภาพ ค้นหาสาเหตุ
+                                        และนำเสนอแนวทางการแก้ไขที่เป็นระบบ
+                                        รวมถึงการสร้างความตระหนักด้านคุณภาพตามมาตรฐานสากล</p>
+                                </div>
+
+                                <hr>
+                                <div id="chapter1">
+                                    <h2>บทที่ 1: การเพิ่มประสิทธิภาพการผลิตโดย Total Productive Maintenance (TPM)</h2>
+
+                                    <div id="chapter1-1">
+                                        <h3>1.1 แนวทางเพิ่มประสิทธิภาพการผลิต</h3>
+                                        <p>การเพิ่มประสิทธิภาพการผลิตทำได้โดยการบำรุงรักษาแบบ Total Productive
+                                            Maintenance (TPM) โดยพิจารณาทรัพยากรที่เข้าสู่กระบวนการผลิต (INPUT)
+                                            และผลผลิตที่ได้ (OUTPUT) ดังนี้:</p>
+
+                                        <h4>INPUT (4Ms)</h4>
+                                        <p>คือปัจจัยนำเข้าสู่กระบวนการผลิต ซึ่งประกอบด้วย:</p>
+                                        <ul>
+                                            <li>Man (คน): พนักงานผู้ปฏิบัติงาน</li>
+                                            <li>Machine (เครื่องจักรอุปกรณ์): อุปกรณ์และเครื่องมือในการผลิต</li>
+                                            <li>Material (วัสดุ): วัตถุดิบและชิ้นส่วนต่างๆ</li>
+                                            <li>Method (วิธีการ): ขั้นตอนและกระบวนการทำงาน</li>
+                                        </ul>
+
+                                        <h4>OUTPUT (P, Q, C, D, S, M)</h4>
+                                        <p>คือผลลัพธ์ที่องค์กรต้องควบคุมและส่งมอบ:</p>
+                                        <ul>
+                                            <li>Products (ผลผลิต): ปริมาณและชนิดของสินค้า/บริการ</li>
+                                            <li>Quality (คุณภาพ): ความถูกต้องตามมาตรฐานและความต้องการของลูกค้า</li>
+                                            <li>Cost (ต้นทุน): ค่าใช้จ่ายในการดำเนินงาน</li>
+                                            <li>Delivery (การจัดส่ง): ความรวดเร็วและตรงเวลา</li>
+                                            <li>Safety (ความปลอดภัย): สภาพแวดล้อมการทำงานและความเสี่ยง</li>
+                                            <li>Morale (ขวัญ / กำลังใจ): ทัศนคติที่ดีของพนักงาน</li>
+                                        </ul>
+                                        <p>นอกจากนี้ ยังมีการพิจารณา ต้นทุนวงจรอายุเครื่องจักร (LCC)
+                                            ซึ่งรวมถึงต้นทุนติดตั้ง เดินเครื่อง บำรุงรักษา และกำจัด.</p>
+                                    </div>
+                                    <hr>
+                                    <div id="chapter1-2">
+                                        <h3>1.2 เป้าหมายขององค์กร</h3>
+                                        <p>จุดประสงค์หลักขององค์กรคือ การเพิ่มประสิทธิภาพการผลิต และ การหาผลกำไร
+                                            การบรรลุเป้าหมายนี้ต้องอาศัยการควบคุม 6 ด้าน (PQCDSM)
+                                            และให้ความสำคัญกับปัจจัยหลัก 3 อย่าง:</p>
+
+                                        <h4>การควบคุม 6 ด้าน (PQCDSM)</h4>
+                                        <ol>
+                                            <li>ควบคุมกระบวนการผลิต (Production Control)</li>
+                                            <li>ควบคุมคุณภาพ (Quality Control - Q.C.)</li>
+                                            <li>ควบคุมต้นทุน (Cost)</li>
+                                            <li>ควบคุมการส่งมอบ (Delivery)</li>
+                                            <li>ความปลอดภัย/มลภาวะ (Safety/Pollution)</li>
+                                            <li>ขวัญและกำลังใจ (Morale)</li>
+                                        </ol>
+
+                                        <h4>ปัจจัยหลัก 3 อย่างที่ต้องพัฒนา</h4>
+                                        <ul>
+                                            <li>คน: ให้การศึกษาและฝึกอบรมด้านปฏิบัติ เทคโนโลยี และการบริหาร
+                                                รวมถึงการสร้างจิตสำนึกที่ดี</li>
+                                            <li>เครื่องจักรอุปกรณ์: ควบคุมเครื่องจักร, จัดกิจกรรมบำรุงรักษา
+                                                และเก็บข้อมูลการบำรุงรักษา</li>
+                                            <li>วัตถุดิบ: การวิเคราะห์และควบคุมคุณภาพของวัตถุดิบ</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div id="chapter1-3">
+                                        <h3>1.3 วิวัฒนาการและการบำรุงรักษาอย่างเป็นระบบ</h3>
+                                        <p>วิวัฒนาการของการบำรุงรักษาแสดงให้เห็นถึงการพัฒนาแนวคิดจากปฏิกิริยาไปสู่การป้องกันและปรับปรุง:
+                                        </p>
+                                        <ol>
+                                            <li>การบำรุงรักษาหลังการเกิดเหตุ (BM): Breakdown Maintenance</li>
+                                            <li>การบำรุงรักษาเชิงป้องกัน (PM): Preventive Maintenance</li>
+                                            <li>การบำรุงรักษาทวีผล (PM): Productive Maintenance</li>
+                                            <li>การบำรุงรักษาเชิงแก้ไขปรับปรุง (CM): Corrective Maintenance</li>
+                                            <li>การป้องกันการบำรุงรักษา (MP): Maintenance Prevention</li>
+                                            <li>การบำรุงรักษาที่ทุกคนมีส่วนร่วม (TPM): Total Productive Maintenance
+                                                (เป้าหมายสูงสุด)</li>
+                                        </ol>
+                                        <p>หลักการเบื้องต้นเพื่อสู่ การชำรุดเป็นศูนย์
+                                            คือการค้นหาและป้องกันข้อบกพร่องที่ซ่อนเร้นไว้ล่วงหน้า.</p>
+                                    </div>
+                                    <hr>
+                                    <div id="chapter1-4">
+                                        <h3>1.4 คำนิยามของ TPM และความร่วมมือ</h3>
+                                        <p>TPM (Total Productive Maintenance)
+                                            คือระบบที่มุ่งเน้นการกำหนดเป้าหมายให้เครื่องจักรอยู่ในสภาพที่มีประสิทธิภาพสูงสุด
+                                            โดยสร้างระบบรวมของ PM ที่มีเป้าหมายที่วงจรชีวิตของเครื่องจักร (LCC)
+                                            และจัดให้พนักงานทุกระดับมีส่วนร่วม</p>
+                                        <p>หัวใจสำคัญคือ ความร่วมมือ ระหว่าง ฝ่ายบริหาร ฝ่ายผลิต ฝ่ายบำรุงรักษา:</p>
+
+                                        <h4>ความร่วมมือระหว่างฝ่ายผลิตและฝ่ายบำรุงรักษา</h4>
+                                        <ul>
+                                            <li>งานของฝ่ายผลิต: ทำความสะอาด, ตรวจ/เติมน้ำมันหล่อลื่น, ขันน็อต,
+                                                ปรับแต่งเล็กๆ น้อยๆ, ใช้เครื่องให้ถูกต้อง (การบำรุงรักษาด้วยตนเอง)</li>
+                                            <li>งานของฝ่ายบำรุงรักษา: ซ่อมใหญ่, บำรุงรักษาตามแผนการ, ทำแผนตรวจสอบคู่มือ,
+                                                ฝึกสอนฝ่ายผลิต, ดูแลการจัดซื้อ</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div id="chapter1-5">
+                                        <h3>1.5 TPM สู่เหตุขัดข้องเป็นศูนย์ (ZERO BREAKDOWN)</h3>
+                                        <p>หลักการปฏิบัติ 5 ประการ ของ TPM เพื่อให้บรรลุเป้าหมายเหตุขัดข้องเป็นศูนย์:
+                                        </p>
+                                        <ol>
+                                            <li>การปรับปรุงตามชนิดของเครื่องจักร (มุ่งเน้นแก้ไขเครื่องจักรที่มีปัญหา)
+                                            </li>
+                                            <li>สร้างระบบบำรุงรักษาด้วยตัวผู้ปฏิบัติ (Autonomy Maintenance)</li>
+                                            <li>สร้างระบบแผนการบำรุงรักษาของฝ่ายบำรุงรักษา (Planned Maintenance)</li>
+                                            <li>ฝึกอบรมบุคลากรให้ชำนาญทั้งด้านการเดินเครื่องและการบำรุงรักษา</li>
+                                            <li>สร้างระบบควบคุมการดำเนินงานเบื้องต้นขึ้น (มาตรฐานการใช้งานและการดูแล)
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <hr>
+                                    <div id="chapter1-6">
+                                        <h3>1.6 ประสิทธิภาพโดยรวมของเครื่องจักร (Overall Equipment Effectiveness - OEE)
+                                        </h3>
+                                        <p>OEE เป็นดัชนีชี้วัดที่สำคัญของ TPM วัดจากองค์ประกอบหลัก 4 ด้าน:</p>
+                                        <ul>
+                                            <li>ความพร้อม (Availability): เวลาทำงานจริงเทียบกับเวลาที่ควรทำงาน</li>
+                                            <li>สมรรถนะ (Performance): ความเร็วในการผลิตจริงเทียบกับความเร็วมาตรฐาน</li>
+                                            <li>คุณภาพ (Rate of Quality Product): อัตราส่วนของผลิตภัณฑ์ที่ไม่บกพร่อง
+                                            </li>
+                                            <li>ความปลอดภัย (Safety): (บางครั้งถูกรวมเป็นปัจจัยเสริม)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div id="chapter2">
+                                    <h2>บทที่ 2: ประเภทและการบริหารงานบำรุงรักษา</h2>
+
+                                    <div id="chapter2-1">
+                                        <h3>2.1 การบำรุงรักษาเชิงป้องกัน (Preventive Maintenance - PM)</h3>
+                                        <p>การบำรุงรักษาเชิงป้องกันคือ การดำเนินการเพื่อ
+                                            ป้องกันการหยุดของเครื่องจักรโดยเหตุฉุกเฉิน โดยสามารถทำได้โดย:</p>
+                                        <ul>
+                                            <li>การตรวจสอบสภาพเครื่องจักร</li>
+                                            <li>การทำความสะอาดและหล่อลื่นโดยถูกวิธี</li>
+                                            <li>การปรับแต่งเครื่องจักรให้จุดทำงานตามคำแนะนำของคู่มือ</li>
+                                        </ul>
+                                        <h4>แนวคิดที่เกี่ยวข้องใน PM</h4>
+                                        <ul>
+                                            <li>MTBF (Mean Time Between Failure): ช่วงระยะเวลา (เฉลี่ย) ที่ควรบำรุงรักษา
+                                            </li>
+                                            <li>MTTR (Mean Time To Repair): ช่วงระยะเวลา (เฉลี่ย) ที่ทำการซ่อม </li>
+                                        </ul>
+                                        <h4>วิธีการบำรุงรักษาเชิงป้องกัน</h4>
+                                        <ul>
+                                            <li>TBM (Time Based Maintenance): บำรุงรักษาตามระยะเวลาที่กำหนด </li>
+                                            <li>CBM (Condition Based Maintenance): บำรุงรักษาตามสภาวะ
+                                                โดยใช้อุปกรณ์ตรวจจับ (Monitoring) อุณหภูมิ ความดัน หรือการสั่นสะเทือน
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div id="chapter2-2">
+                                        <h3>2.2 การบำรุงรักษาหลังเหตุขัดข้อง (Breakdown Maintenance - BM)</h3>
+                                        <p>คือ การบำรุงรักษาเมื่อเครื่องจักรเกิดชำรุดและหยุดโดยฉุกเฉิน
+                                            เป็นรูปแบบการบำรุงรักษาที่ตอบสนองเมื่อเกิดความเสียหายแล้ว.</p>
+                                    </div>
+                                    <hr>
+
+                                    <div id="chapter2-3">
+                                        <h3>2.3 การบำรุงเชิงแก้ไขปรับปรุง (Corrective Maintenance - CM)</h3>
+                                        <p>เป็นการดำเนินการเพื่อการ ดัดแปลง ปรับปรุง
+                                            หรือแก้ไขเครื่องจักรหรือส่วนของเครื่องจักร เพื่อเป้าหมาย 2 ประการ:</p>
+                                        <ol>
+                                            <li>ขจัดเหตุขัดข้องเรื้อรัง ของเครื่องจักรให้หมดสิ้นไปโดยสิ้นเชิง </li>
+                                            <li>ปรับปรุงสมรรถนะ ของเครื่องจักรให้สามารถ "ผลิต" ได้ด้วยคุณภาพ
+                                                และ/หรือปริมาณที่สูงขึ้น </li>
+                                        </ol>
+                                    </div>
+                                    <hr>
+
+                                    <div id="chapter2-4">
+                                        <h3>2.4 การป้องกันการบำรุงรักษา (Maintenance Prevention - MP)</h3>
+                                        <p>คือการดำเนินการใด ๆ ก็ตามเพื่อได้มาซึ่งเครื่องจักรที่ ไม่ต้องการการบำรุงรักษา
+                                            หรือต้องการแต่น้อยที่สุด สามารถทำได้โดย:</p>
+                                        <ul>
+                                            <li>การออกแบบ: ออกแบบเครื่องจักรให้แข็งแรง ทนทาน และบำรุงรักษาง่าย </li>
+                                            <li>การใช้เทคนิคและวัสดุ:
+                                                ใช้เทคนิคและวัสดุซึ่งจะทำให้เครื่องจักรมีความเชื่อถือได้สูง</li>
+                                            <li>การจัดซื้อ: รู้จักเลือกและซื้อเครื่องจักรที่ดี ทนทาน ซ่อมง่าย
+                                                และมีราคาที่เหมาะสม </li>
+                                        </ul>
+                                    </div>
+
+                                    <h2>บทที่ 3: ข้อมูลและการใช้ประโยชน์จากการบำรุงรักษา</h2>
+
+                                    <div id="chapter3-1">
+                                        <h3>3.1 ประโยชน์ของข้อมูลการบำรุงรักษา</h3>
+                                        <p>การจัดเก็บและใช้ข้อมูลการบำรุงรักษามีประโยชน์หลักดังนี้:</p>
+                                        <ol>
+                                            <li>กำหนดมาตรฐาน ของการบำรุงรักษา ซึ่งเป็นรากฐานของการบำรุงรักษา </li>
+                                            <li>ให้การช่วยเหลือและแนะนำทางเทคนิคเพื่อการปฏิบัติ </li>
+                                            <li>รวบรวมผล ของการบำรุงรักษา เพื่อนำไปกำหนดแผนการปรับปรุง </li>
+                                            <li>ใช้เป็นข้อมูลในการนำ แผนการปรับปรุง ไปปฏิบัติ </li>
+                                            <li>ใช้ในการ กำหนดมาตรฐานใหม่ </li>
+                                        </ol>
+                                    </div>
+                                    <hr>
+
+                                    <div id="chapter3-2">
+                                        <h3>3.2 เป้าหมายและวัตถุประสงค์ของการเก็บข้อมูล</h3>
+                                        <p>เป้าหมายหลักคือการรวบรวมข้อมูลเพื่อตอบสนองต่อการควบคุม 6 ด้านขององค์กร
+                                            (PQCDSM):</p>
+                                        <ul>
+                                            <li>เพื่อให้ ผลิต ได้ตามแผน </li>
+                                            <li>เพื่อรักษาและเพิ่ม คุณภาพ </li>
+                                            <li>เพื่อการลด ต้นทุน </li>
+                                            <li>เพื่อ ส่งมอบ ตามแผน </li>
+                                            <li>เพื่อให้ขวัญและกำลังใจ บุคลากร </li>
+                                            <li>เพื่อเพิ่มความ ปลอดภัย และรักษาสภาพแวดล้อม </li>
+                                        </ul>
+                                    </div>
+
+                                    </ul>
+                                </div>
+                                <hr>
+
+                                <div id="chapter3-3">
+                                    <h3>3.3 ลักษณะของข้อมูลการบำรุงรักษาที่ดีและมีประสิทธิภาพ</h3>
+
+                                    <h4>ข้อมูลการบำรุงรักษาที่ดี (Good Data)</h4>
+                                    <p>ต้องเป็นข้อมูลที่ไม่ถูกตกหล่น,
+                                        มีความชัดเจนและเป็นเหตุเป็นผลที่เกี่ยวข้องกับอุปกรณ์นั้น ๆ
+                                        รวมถึงความจำเป็นและจุดประสงค์ของการใช้ปฏิบัติที่ชัดเจน
+                                        โดยการรวบรวมข้อมูลควรใช้หลัก 5W 1H</p>
+
+                                    <h4>ข้อมูลที่มีประสิทธิภาพ (Effective Data)</h4>
+                                    <p>ควรตอบคำถามหลักเพื่อการควบคุม ได้แก่ Who (ใคร), What (อะไร), Why (ทำไม), When
+                                        (เมื่อไหร่), และ Where (ที่ไหน) นอกจากนี้ ข้อมูลต้องสามารถคำนวณได้อย่างรวดเร็ว,
+                                        สามารถทำงานได้หลายประเภท, สามารถคำนวณจากแหล่งต่างๆ ในปริมาณมาก,
+                                        และดึงออกมาแสดงได้ทุกเวลา </p>
+                                </div>
+                                <hr>
+
+                                <div id="chapter3-4">
+                                    <h3>3.4 ประเภทและการบันทึกข้อมูล</h3>
+
+                                    <h4>ประเภทของการรวบรวมข้อมูล</h4>
+                                    <ol>
+                                        <li>บันทึกรายวันสำหรับการบำรุงรักษา </li>
+                                        <li>ตารางควบคุมการตรวจสอบประจำวัน </li>
+                                        <li>ตารางบันทึกข้อมูล EDPS (Electronic Data Processing System) </li>
+                                        <li>รายงานอุบัติเหตุของเครื่องจักรอุปกรณ์ </li>
+                                        <li>ตารางบันทึกการบำรุงรักษา </li>
+                                        <li>การ์ดสำหรับงานบำรุงรักษา </li>
+                                    </ol>
+
+                                    <h4>วิธีบันทึกเหตุขัดข้องและเก็บข้อมูล</h4>
+                                    <p>ผู้ปฏิบัติงานต้องเข้าใจในอาการของเหตุขัดข้องให้ถ่องแท้,
+                                        เข้าใจถึงสภาพที่ผิดปกติที่จะทำให้เกิดเหตุขัดข้อง, และแสดงด้วยการ SKETCH
+                                        เพื่อให้เห็นภาพที่ชัดเจน </p>
+                                </div>
+                                <hr>
+
+                                <div id="chapter3-5">
+                                    <h3>3.5 การใช้ประโยชน์จากข้อมูลการบำรุงรักษา (PDCA)</h3>
+                                    <p>ข้อมูลการบำรุงรักษาจะถูกนำไปใช้ประโยชน์ตามวงจรการบริหารคุณภาพ PDCA ดังนี้:</p>
+                                    <ul>
+                                        <li>1. PLAN (วางแผน): กำหนดมาตรฐานและแผนการบำรุงรักษา </li>
+                                        <li>2. DO (ปฏิบัติ): ซ่อมแซม, ทำการปรับแต่ง, ตรวจเติมน้ำมัน/ตรวจสอบ </li>
+                                        <li>3. CHECK (ตรวจสอบ): บันทึกและวิเคราะห์ผล </li>
+                                        <li>4. ACTION (ดำเนินการ): ป้อนข้อมูลกลับ,
+                                            ประยุกต์ข่าวสารข้อมูลในการวางแผนครั้งต่อไป </li>
+                                    </ul>
+
+                                    <p>จุดมุ่งหมายของการใช้ PDCA คือ การป้องกันการเกิดซ้ำสอง
+                                        และการป้องกันอุบัติเหตุทำนองเดียวกัน ,
+                                        การรายงานข้อมูลไปยังผู้เกี่ยวข้อง/ผู้บังคับบัญชา ,
+                                        การใช้ข้อมูลเพื่อการวิเคราะห์ระยะยาว ,
+                                        และการส่งข่าวสารไปยังหน่วยงานออกแบบเพื่อใช้เป็นข้อมูลในการออกแบบ MP (Maintenance
+                                        Prevention)</p>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div id="chapter4">
+                                <h2>บทที่ 4: การวางแผนงานบำรุงรักษา</h2>
+
+                                <div id="chapter4-1">
+                                    <h3>4.1 คุณลักษณะของวัตถุประสงค์ที่ดี</h3>
+                                    <p>วัตถุประสงค์ของงานบำรุงรักษาที่ดีจะต้องมีคุณลักษณะดังนี้:</p>
+                                    <ol>
+                                        <li>วัตถุประสงค์ต้องชัดเจน เด่นชัด และควรเน้นให้เห็นวัตถุประสงค์เฉพาะด้วย</li>
+                                        <li>ต้องเป็นวัตถุประสงค์หลักที่ สอดคล้องกับวัตถุประสงค์หลักขององค์กร
+                                            หรือหน่วยงานนั้น</li>
+                                        <li>มีแนวทางที่สามารถทำให้ สำเร็จตามวัตถุประสงค์ได้</li>
+                                        <li>เป็นวัตถุประสงค์ที่ เหมาะสมกับเวลา สถานการณ์ และสภาพของหน่วยงาน</li>
+                                        <li>เป็นวัตถุประสงค์ที่ ไม่ขัดต่อ ระเบียบ ข้อบังคับ กฎหมาย และศีลธรรม</li>
+                                    </ol>
+                                </div>
+                                <hr>
+
+                                <div id="chapter4-2">
+                                    <h3>4.2 สิ่งที่ต้องพิจารณาขณะวางแผน</h3>
+                                    <p>ในการวางแผนงานบำรุงรักษาที่ดี สิ่งที่ต้องพิจารณาประกอบด้วย:</p>
+                                    <ol>
+                                        <li>การคาดทำนาย (Forecasting)</li>
+                                        <li>การกำหนดวัตถุประสงค์ รือกำหนดเป้าหมาย</li>
+                                        <li>การวางโครงการ (Project Planning)</li>
+                                        <li>การกำหนดนโยบาย</li>
+                                        <li>การกำหนดเวลาการปฏิบัติงาน</li>
+                                        <li>การกำหนดแผนปฏิบัติงาน (Action Plan)</li>
+                                        <li>งบประมาณ</li>
+                                        <li>แผนงานบุคคล (Manpower Planning)</li>
+                                        <li>รูปแบบขององค์กร (Organization Structure)</li>
+                                    </ol>
+                                </div>
+                                <hr>
+
+                                <div id="chapter4-3">
+                                    <h3>4.3 สาเหตุที่ทำให้การวางแผนบกพร่อง</h3>
+                                    <p>การวางแผนอาจเกิดข้อบกพร่องได้จากหลายสาเหตุ:</p>
+                                    <ol>
+                                        <li>การวางแผนบกพร่อง เนื่องจากมีข้อมูลไม่พอหรือไม่ทราบข้อเท็จจริง</li>
+                                        <li>ข้อมูลที่ได้ถูกต้องและเพียงพอ แต่การประเมินหรือการวิเคราะห์ข้อมูลผิดพลาด
+                                        </li>
+                                        <li>เกิดการเปลี่ยนแปลง ในวัตถุประสงค์ หรือเป้าหมาย</li>
+                                        <li>เหตุการณ์ต่างๆ และสิ่งแวดล้อมเปลี่ยนไป</li>
+                                        <li>เนื่องมาจากการบริหารตามแผนเป็นไปอย่างไม่ถูกต้อง (การนำไปปฏิบัติไม่ดี)</li>
+                                    </ol>
+                                </div>
+                                <hr>
+
+                                <div id="chapter4-4">
+                                    <h3>4.4 ใครคือผู้วางแผน</h3>
+                                    <p>ผู้ที่มีส่วนร่วมในการวางแผนบำรุงรักษา ได้แก่:</p>
+                                    <ul>
+                                        <li>ผู้บริหารระดับสูง เป็นผู้วางแผนเอง</li>
+                                        <li>ผู้ใต้บังคับบัญชา ที่เกี่ยวข้องกับงานนั้น</li>
+                                        <li>จ้างบุคคลภายนอก หรือที่ปรึกษาเข้ามาช่วยวางแผน</li>
+                                    </ul>
+                                </div>
+                                <hr>
+
+                                <div id="chapter4-5">
+                                    <h3>4.5 คุณลักษณะของแผนการบำรุงรักษาที่ดี</h3>
+                                    <p>แผนการบำรุงรักษาที่บรรลุวัตถุประสงค์ควรมีคุณลักษณะดังนี้:</p>
+                                    <ol>
+                                        <li>สามารถ รักษาสมรรถนะของเครื่องจักรอุปกรณ์ให้เป็นปกติ**</li>
+                                        <li>อยู่ในระดับที่ ประหยัดเสมอ (ด้านต้นทุน)</li>
+                                        <li>ใช้ประโยชน์จาก บทเรียนของเหตุขัดข้อง ให้มาก โดยให้มีผลสะท้อนถึงเรื่องคล้ายๆ
+                                            กัน (Lesson Learned)</li>
+                                        <li>ทำ มาตรฐานการบำรุงรักษาให้สมบูรณ์
+                                            และให้เห็นความสัมพันธ์กับแผนการบำรุงรักษาได้ชัดเจน</li>
+                                        <li>การบำรุงรักษาทำได้ เพียงพอ (Preventive Maintenance)</li>
+                                    </ol>
+
+                                    <p>นอกจากนี้ แผนปฏิบัติงานที่ดีที่เห็นเป็นรูปธรรม คือ:</p>
+                                    <ul>
+                                        <li>ความสัมพันธ์ระหว่าง กิจกรรมการผลิตกับแผนบำรุงรักษา จะต้องเห็นชัดเจน</li>
+                                        <li>งานบำรุงรักษาได้ สัดส่วนกันดี และสามารถดำเนินการได้อย่างมีแบบแผน</li>
+                                        <li>จำนวนโหลดและลักษณะการทำงานของเครื่องจักรอุปกรณ์ สามารถทราบได้อย่างชัดเจน
+                                        </li>
+                                        <li>มีการ กำหนดรูปแบบการบำรุงรักษา ไว้</li>
+                                        <li>บันทึก การบำรุงรักษา</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <hr>
+                           <div id="chapter5">
+    <h2>หน่วยที่ 5: งานตรวจปรับเครื่องจักรกล</h2>
+
+    <div id="chapter5-1">
+        <h3>5.1 งานขูด (Scraping Work)</h3>
+        <p>
+            งานขูด คือ การดันเศษวัตถุเล็กๆ ออกจากผิวงานที่ได้รับการเตรียมผิวด้วยการปฏิบัติงานประเภทอื่นมาแล้ว ด้วยเครื่องมือที่ขอบคม เรียกว่า “เหล็กขูด” เพื่อปรับผิวงานให้มีความเรียบตามหลักการ
+        </p>
+    </div>
+    <hr>
+
+    <div id="chapter5-2">
+        <h3>5.2 ชนิดของเหล็กขูด</h3>
+        <p>เหล็กขูดสามารถแบ่งออกตามลักษณะการใช้งานได้ ดังนี้:</p>
+        <h4>5.2.1 เหล็กขูดแบน</h4>
+        <p>
+            เหล็กขูดแบนใช้สำหรับขูดงานผิวราบ ให้มีความราบตามต้องการ มีทั้งชนิดใบแข็งทั้งตัวและชนิดถอดเปลี่ยนใบเหล็กขูดได้
+        </p>
+        <ul>
+            <li>**การลับคม:** สามารถลับด้วยหินเจียระไนชนิดแข็งพิเศษหรือหินน้ำมัน</li>
+            <li>**การลับเหล็กขูดแบน:** ต้องลับผิวด้านหน้าและผิวของแผ่นสลับกันไปมา จนกระทั่งรอยเยินและร่องหายไป</li>
+            <li>**เทคนิค:** ต้องใช้มือทั้งสองจับเหล็กขูดกดลงบนหินลับ โดยต้องเลือกมุมตั้งในการลับให้ได้มุมคมที่มีค่าเหมาะกับวัตถุที่ใช้</li>
+        </ul>
+                    </div>
+</div>
+
+                            <hr>
+                            <div id="chapter6">
+                                <h2>บทที่ 6: การบำรุงรักษาด้วยตนเอง (Autonomous Maintenance)</h2>
+
+                                <div id="chapter6-1">
+                                    <h3>6.1 เบื้องหลังความจำเป็นของการบำรุงรักษาด้วยตนเอง </h3>
+                                    <ul>
+                                        <li>การเปลี่ยนแปลงไปอย่างรวดเร็วของวิทยาการและเทคโนโลยีสมัยใหม่ </li>
+                                        <li>การปรับตัวเพื่อรองรับการขยายตัวของรัฐวิสาหกิจ </li>
+                                        <li>สภาวะการแข่งขันทางด้านการตลาด </li>
+                                    </ul>
+                                </div>
+                                <hr>
+
+                                <div id="chapter6-2">
+                                    <h3>6.2 ความรวมมือของฝ่ายผลิตและฝ่ายบำรุงรักษา </h3>
+                                    <ul>
+                                        <li>งานของฝ่ายผลิต: ปฏิบัติงานเกี่ยวกับสายงานการผลิต </li>
+                                        <li>งานของฝ่ายบำรุงรักษา: งานด้านการบริการบำรุงรักษา [cite: 14, 15]</li>
+                                        <li>ความร่วมมือ: ความรวมมือของทั้ง 2 ฝ่ายในการดูแลด้านการผลิตและการบำรุงรักษา
+                                            [cite: 17]</li>
+                                    </ul>
+                                </div>
+                                <hr>
+
+                                <div id="chapter6-3">
+                                    <h3>6.3 การแบ่งประเภทและหน้าที่ความรับผิดชอบในการบำรุงรักษา [cite: 19]
+                                    </h3>
+
+                                    <h4>ปัจจัย 3 ประการ ในการจัดทำกิจกรรมการบำรุงรักษา [cite: 20, 21]</h4>
+                                    <ol>
+                                        <li>การป้องกันการเสื่อมสภาพ [cite: 22]</li>
+                                        <li>การวัดการเสื่อมสภาพ [cite: 23]</li>
+                                        <li>การทำให้กลับอยู่ในสภาพเดิม [cite: 24]</li>
+                                    </ol>
+
+                                    <h4>1 กิจกรรมของฝ่ายปฏิบัติงาน [cite: 25]</h4>
+                                    <ul>
+                                        <li>**(1) การป้องกันการเสื่อมสภาพ[cite: 26]:**
+                                            <ul>
+                                                <li>การใช้เครื่องจักรอุปกรณ์อย่างถูกวิธี </li>
+                                                <li>การปรับเงื่อนไขเบื้องต้น (ทำความสะอาด หยอดน้ำมัน
+                                                    กวดขันน็อตให้แน่น) [cite: 30]</li>
+                                                <li>การปรับแต่งเครื่อง (การปรับแต่งการเดินเครื่อง
+                                                    การเปลี่ยนชิ้นส่วนและเงื่อนไขการผลิต) </li>
+                                            </ul>
+                                        </li>
+                                        <li>**(2) การวัดการเสื่อมสภาพ[cite: 32]:**
+                                            <ul>
+                                                <li>การตรวจสอบประจำวัน [cite: 33]</li>
+                                                <li>การตรวจสอบเป็นระยะ [cite: 34]</li>
+                                                <li>ตรวจสอบโดยใช้ประสาทสัมผัสทั้งห้า [cite: 35]</li>
+                                            </ul>
+                                        </li>
+                                        <li>**(3) การทำให้กลับอยู่ในสภาพเดิม[cite: 36]:**
+                                            <ul>
+                                                <li>การเปลี่ยนชิ้นส่วน (เปลี่ยนอะไหล่ง่ายๆ
+                                                    และการแก้ไขปัญหาเร่งด่วน) [cite: 37]</li>
+                                                <li>
+                                                    การให้ข้อมูลที่ถูกต้องและรวดเร็วเกี่ยวกับสภาพและผลของเหตุขัดข้องที่เกิดขึ้น
+                                                    [cite: 38]</li>
+                                                <li>
+                                                    การให้ความร่วมมือในการซ่อมเครื่องจักรที่ขัดข้องอย่างกะทันหัน [cite:
+                                                    39]</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr>
+
+                                <div id="chapter6-4">
+                                    <h3>6.5 สิบสิงกุญแจสู่ความสำเร็จในการปฏิบัติการบำรุงรักษาด้วยตนเอง
+                                        [cite: 43, 44]</h3>
+                                    <ol>
+                                        <li>การประชุมแนะนำ [cite: 45]</li>
+                                        <li>การร่วมมือระหว่างหน่วยงาน [cite: 46]</li>
+                                        <li>การรวมกลุ่มกิจกรรม [cite: 47]</li>
+                                        <li>การสร้างจิตสำนึกของงาน [cite: 48]</li>
+                                        <li>มีการปฏิบัติ [cite: 49]</li>
+                                        <li>การฝึกอบรม [cite: 50]</li>
+                                        <li>กำหนดเป้าหมาย [cite: 51]</li>
+                                        <li>การควบคุมและจัดการด้วยตนเอง [cite: 52]</li>
+                                        <li>การตรวจสอบ [cite: 53]</li>
+                                        <li>การเลือกตัวอย่าง [cite: 54]</li>
+                                        <li>ดำเนินการซ่อมอย่างฉับไว [cite: 55]</li>
+                                        <li>การดำเนินการอย่างจริงจัง [cite: 56]</li>
+                                    </ol>
+                                </div>
+                                <hr>
+
+                                <div id="chapter6-5">
+                                    <h3>6.6 ขั้นที่ 1 : การทำความสะอาดขั้นต้น [cite: 57]</h3>
+
+                                    <h4>1. ขั้นที่ 1 การทำความสะอาดขั้นต้นและการปรับปรุงเงื่อนไขพื้นฐาน
+                                        [cite: 58]</h4>
+                                    <ol>
+                                        <li>กำจัดขยะ สิ่งเปรอะเปื้อนและสิ่งแปลกปลอม [cite: 59]
+                                            <ul>
+                                                <li>สิ่งแปลกปลอมที่เข้าไปติดในระบบควบคุม (Machin, Pneumatic,
+                                                    Electric) ก่อให้เกิดการขัดสี อุดตัน การรั่ว [cite: 60, 61]</li>
+                                                <li>เศษวัสดุที่ใช้ในการผลิตหรือสิ่งแปลกปลอมอื่นๆ
+                                                    ทำให้การป้อนวัตถุดิบเข้าไปในเครื่องจักรไม่ดี [cite: 62, 63]</li>
+                                                <li>
+                                                    วงจรควบคุมทางไฟฟ้าต้องขจัดฝุ่นออกเพื่อป้องกันการไหลของกระแสที่ไม่ต่อเนื่องสม่ำเสมอ
+                                                    [cite: 65]</li>
+                                            </ul>
+                                        </li>
+                                        <li>การทำความสะอาดคือการตรวจซ่อม [cite: 67]</li>
+                                        <li>การเติมน้ำมัน [cite: 68]</li>
+                                        <li>การขัดกวดให้แน่น [cite: 69]</li>
+                                    </ol>
+
+                                    <h4>2. ขั้นที่ 1 การทำความสะอาดขั้นต้นและผู้เกี่ยวข้อง [cite: 70]</h4>
+                                    <ul>
+                                        <li>การส่งเสริมการทำกิจกรรมกลุ่มย่อยที่ทุกคนมีส่วนร่วม
+                                            ในส่วนที่เกี่ยวกับเครื่องจักร [cite: 71]</li>
+                                        <li>การทำความสะอาดเครื่องจักรทุกซอกทุกมุม เป็นการกระตุ้นให้ Operator
+                                            เกิดความสนใจและอาใจใส่ต่อเครื่องจักร [cite: 72]</li>
+                                        <li>การฝึกอบรมด้วยการตอบข้อซักถามหรือข้อสงสัย
+                                            ถือได้ว่าเป็นวิธีการที่มีประสิทธิภาพมากที่สุด [cite: 73]</li>
+                                    </ul>
+                                </div>
+                                <hr>
+
+                                <div id="chapter6-6">
+                                    <h3>6.7 ขั้นที่ 2 : มาตรการเกี่ยวกับสาเหตุและจุดที่มีปัญหา [cite: 74]
+                                    </h3>
+                                    <ol>
+                                        <li>ความเสียหายอันเกิดจากเศษฝุ่น ผง สิ่งแปลกปลอม
+                                            และมาตรการเกี่ยวกับสาเหตุที่เกิด [cite: 75]</li>
+                                        <li>จุดที่เป็นปัญหาและมาตรการแก้ไข [cite: 76]</li>
+                                        <li>การรวบรวมสิ่งที่ต้องปรับปรุงและการตรวจสอบผล [cite: 77]</li>
+                                    </ol>
+                                </div>
+                                <hr>
+
+                                <div id="chapter6-7">
+                                    <h3>6.8 ขั้นที่ 3 : กำหนดมาตรการเกี่ยวกับการทำความสะอาด เติมน้ำมัน
+                                        [cite: 78, 79]</h3>
+
+                                    <h4>1. ทำไมถึงรักษาไม่ได้? [cite: 80]</h4>
+                                    <ul>
+                                        <li>ต้องระบุสิ่งที่ต้องปฏิบัติและวิธีการอย่างชัดเจน [cite: 81]</li>
+                                        <li>อธิบายถึงเหตุผลและความจำเป็นที่ต้องปฏิบัติให้ทุกคนเข้าใจ [cite:
+                                            82]</li>
+                                        <li>เสริมสร้างความสามารถในการปฏิบัติ [cite: 83]</li>
+                                        <li>จัดสภาพแวดล้อมและเงื่อนไขในการปฏิบัติให้พร้อม (เช่น เวลา) [cite:
+                                            84]</li>
+                                    </ul>
+
+                                    <h4>2. ผู้ปฏิบัติควรจะเป็นผู้ที่กำหนดสิ่งที่ต้องรักษาเอง [cite: 85]</h4>
+                                    <ul>
+                                        <li>มีความเข้าใจถึงเหตุผลและความจำเป็นในสิ่งที่ต้องปฏิบัติ [cite:
+                                            86]</li>
+                                        <li>มีความสามารถในการออกมาตรการได้ด้วยตนเอง [cite: 87]</li>
+                                        <li>เป็นผู้กำหนดมาตรการเอง [cite: 88]</li>
+                                    </ul>
+
+                                    <h4>3. การเพิ่มความสำนึกในหน้าที่ด้วยการให้วางมาตรการด้วยตนเอง [cite:
+                                        89]</h4>
+                                    <h4>4. ความพอใจในการกำหนดมาตรการ [cite: 90]</h4>
+                                    <h4>5. การกำหนดเวลาในการทำความสะอาด เติมน้ำมันและการปรับปรุง [cite: 91]
+                                    </h4>
+                                    <h4>6. ตัวอย่างมาตรการการทำความสะอาด การเติมน้ำมัน [cite: 92]</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="chapter7">
+                            <h2>บทที่ 7: การกำหนดมาตรฐานในการบำรุงรักษา</h2>
+
+                            <div id="chapter7-1">
+                                <h3>7.1 ความหมายและจุดมุ่งหมายของการจัดมาตรฐาน</h3>
+                                <p>**การจัดมาตรฐาน** คือ เรื่องของการจัดหา **หลักเกณฑ์อ้างอิงขั้นพื้นฐาน**
+                                    สำหรับเป็นแนวทางการปฏิบัติงานของพนักงาน</p>
+
+                                <h4>จุดมุ่งหมายของการจัดมาตรฐานในการบำรุงรักษาเครื่องจักรอุปกรณ์</h4>
+                                <p>เพื่อบรรลุเป้าหมาย 3 ด้านหลัก:</p>
+                                <ul>
+                                    <li>**1. การเพิ่มผลผลิต:**
+                                        <ul>
+                                            <li>เพิ่มอัตราการใช้งานของเครื่องจักร</li>
+                                            <li>เพิ่มคุณภาพของผลิตภัณฑ์</li>
+                                            <li>เพิ่มอัตราการได้ผลผลิต</li>
+                                        </ul>
+                                    </li>
+                                    <li>**2. ค่าใช้จ่าย:**
+                                        <ul>
+                                            <li>ลดค่าซ่อมบำรุง</li>
+                                            <li>ลดพนักงานบำรุงรักษา</li>
+                                        </ul>
+                                    </li>
+                                    <li>**3. ความปลอดภัย:**
+                                        <ul>
+                                            <li>มาตรฐานสำหรับการประกันความปลอดภัย</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p>นอกจากนี้ ยังรวมถึงการใช้ **เทคโนโลยี, ความชำนาญ**,
+                                    **ความสะดวกของการควบคุมวัสดุสำรอง** และการทำให้ **ชิ้นส่วนสามารถปรับเปลี่ยนกันได้**
+                                </p>
+                            </div>
+                            <hr>
+
+                            <div id="chapter7-2">
+                                <h3>7.2 การจำแนกประเภทของมาตรฐานของการบำรุงรักษาเครื่องจักรอุปกรณ์</h3>
+                                <p>มาตรฐานการบำรุงรักษาสามารถจำแนกออกเป็น 3 ประเภทหลักตามลักษณะการควบคุม:</p>
+                                <ol>
+                                    <li>**การควบคุมเทคโนโลยีเกี่ยวกับการบำรุงรักษาเครื่องจักรอุปกรณ์:**
+                                        <ul>
+                                            <li>มาตรฐานการบำรุงรักษา</li>
+                                            <li>มาตรฐานระดับความสำคัญของเครื่องจักรอุปกรณ์</li>
+                                            <li>ระบบควบคุมแบบ (ไม่ระบุชัดเจน)</li>
+                                        </ul>
+                                    </li>
+                                    <li>**การควบคุมวัสดุสำรอง (Spare Parts Control):**
+                                        <ul>
+                                            <li>ระบบจัดการกับอุปกรณ์</li>
+                                            <li>มาตรฐานการส่งจ่ายอุปกรณ์</li>
+                                            <li>มาตรฐานคู่มืออุปกรณ์</li>
+                                        </ul>
+                                    </li>
+                                    <li>**ควบคุมการทำงาน (Work Control):**
+                                        <ul>
+                                            <li>ระบบจัดการการทำงาน</li>
+                                            <li>มาตรฐานการทำงาน</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="chapter8">
+                        <h2>บทที่ 8: การควบคุมและการวัดผลงานการบำรุงรักษา</h2>
+
+                        <div id="chapter8-1">
+                            <h3>8.1 วัตถุประสงค์ของการควบคุมงานบำรุงรักษา</h3>
+                            <p>
+                                การควบคุมการบำรุงรักษาเป็นความพยายามในอันที่จะลดค่าใช้จ่ายด้านเงินลงทุนในการออกแบบ
+                                สร้างหรือสั่งซื้อเครื่องจักร [cite: 4, 5]
+                                ตลอดจนการลดค่าใช้จ่ายในการบำรุงรักษาและการเดินเครื่องจักรเพื่อการผลิตลงให้ต่ำที่สุดเท่าที่จะเป็นไปได้
+                                [cite: 7, 8]
+                                ทั้งนี้การดำเนินการดังกล่าวจะต้องอยู่ภายใต้ข้อกำหนดทางคุณภาพและปริมาณของผลผลิต
+                                [cite: 9]</p>
+                        </div>
+                        <hr>
+
+                        <div id="chapter8-2">
+                            <h3>8.2 ปัจจัยที่มีผลกระทบต่อการดำเนินงานในการควบคุมงานบำรุงรักษา</h3>
+                            <ol>
+                                <li>หลักการในการบริหารขององค์กร [cite: 11]</li>
+                                <li>ระบบการวางแผนงานและควบคุมงานในองค์กร [cite: 12]</li>
+                                <li>ระบบการจัดหาและจัดเก็บชิ้นอะไหล่ [cite: 13]</li>
+                                <li>โรงซ่อมและคลังเก็บวัสดุ [cite: 14]</li>
+                                <li>อุปกรณ์บำรุงรักษา เช่น เครื่องกลึง เครื่องไส และเครื่องมืออื่นๆ [cite:
+                                    15, 16]</li>
+                            </ol>
+                        </div>
+                        <hr>
+
+                        <div id="chapter8-3">
+                            <h3>8.3 เครื่องจักรเพื่อการผลิต</h3>
+                            <ol>
+                                <li>
+                                    ถ้าสายการผลิตต้องทำการผลิตโดยเครื่องจักรหลายสายให้จัดลำดับความสำคัญของสายการผลิตไว้ตามลำดับก่อนหลัง
+                                    [cite: 18, 19]</li>
+                                <li>ในแต่ละสายการผลิต
+                                    ให้แบ่งกลุ่มเครื่องจักรออกเป็นกลุ่มที่เป็นหัวใจของการผลิตและเครื่องจักรประกอบการผลิต
+                                    [cite: 20]</li>
+                                <li>
+                                    ในกลุ่มของเครื่องจักรที่มีความสำคัญแต่ละประเภทระดับการบำรุงรักษาและความเร่งด่วนจะไม่เท่ากัน
+                                    [cite: 21]</li>
+                                <li>ในกรณีที่เกิดเหตุขัดข้องโดยไม่ทราบล่วงหน้า
+                                    สายการผลิตที่มีความสำคัญระดับแรกจะได้รับบริการก่อนอย่างเต็มที่ [cite: 22]</li>
+                                <li>
+                                    ในกรณีที่เกิดการหยุดฉุกเฉินกับเครื่องจักรในสายการผลิตเดียวกันพร้อมกันหลายเครื่อง
+                                    เครื่องจักรที่ถูกจัดลำดับความสำคัญไว้สูง
+                                    จะได้รับการบริการก่อนเครื่องจักรที่ลำดับความสำคัญต่ำกว่า [cite: 23]</li>
+                            </ol>
+                        </div>
+                        <hr>
+
+                        <div id="chapter8-4">
+                            <h3>8.4 วัสดุบำรุงรักษาและอะไหล่</h3>
+                            <ol>
+                                <li>จัดให้มีเครื่องจักรหรือส่วนเครื่องจักรครบชุด
+                                    จัดเก็บไว้เป็นอะไหล่พร้อมที่จะถอดเปลี่ยนทั้งหน่วยได้ทันที </li>
+                                <li>จัดให้มีชิ้นส่วนหรืออะไหล่ในปริมาณที่เหมาะสม </li>
+                                <li>นำวิชาการด้านการบริหารพัสดุมาประยุกต์กับการเก็บชิ้นส่วนอะไหล่ </li>
+                            </ol>
+                            <p>**ข้อควรพิจารณาเพิ่มเติม:**</p>
+                            <ul>
+                                <li>
+                                    การวิเคราะห์แยกแยะชิ้นส่วนอะไหล่ที่จำเป็นต้องมีเมื่อเกิดเหตุขัดข้องสามารถทดแทนชิ้นส่วนชำรุดได้ทันที
+                                    </li>
+                                <li>การจัดลำดับความสำคัญของชิ้นอะไหล่ </li>
+                            </ul>
+                        </div>
+                        <hr>
+
+                        <div id="chapter8-5">
+                            <h3>8.5 การควบคุมทางด้านข้อมูลการบำรุงรักษา</h3>
+                            <ol>
+                                <li>การจัดทำทะเบียนประวัติของเครื่องจักร [cite: 33]</li>
+                                <li>การจัดทำรายงานการซ่อม [cite: 34]</li>
+                                <li>การจัดการประมวลผลและวิเคราะห์งาน [cite: 35]</li>
+                            </ol>
+                        </div>
+                        <hr>
+
+                        <div id="chapter8-6">
+                            <h3>8.6 การวัดผลบำรุงรักษา</h3>
+                            <p>การวัดอัตราส่วนที่นิยมในงานบำรุงรักษาได้แก่... [cite: 37]</p>
+
+                            <h4>การวัดผลด้วยวิธีของดูปองค์ (DuPont) [cite: 38]</h4>
+                            <p>พิจารณาผลงานจากกลุ่มของงาน 4 ประเภท คือ: [cite: 39]</p>
+                            <ol>
+                                <li>การวางแผนงาน [cite: 40]</li>
+                                <li>ภาระกรรมของงาน [cite: 41]</li>
+                                <li>ค่าใช้จ่าย [cite: 42]</li>
+                                <li>ผลการปฏิบัติงาน [cite: 43]</li>
+                            </ol>
+                        </div>
+                        <hr>
+
+                        <div id="chapter8-7">
+                            <h3>8.7 บทสรุปและระดับของการควบคุม</h3>
+
+                            <h4>ความหมายของการควบคุม</h4>
+                            <ol>
+                                <li>กำหนดผลที่ภายใต้เงื่อนไขหนึ่ง [cite: 46]</li>
+                                <li>ตัดสินใจเลือกกิจกรรมเพื่อให้ได้ผลตามที่กำหนดไว้ [cite: 47]</li>
+                                <li>ริเริ่มกิจกรรมต่างๆ ที่ตัดสินใจเลือกไว้แล้ว [cite: 48]</li>
+                                <li>วัดผลที่ได้ของกิจกรรมดังกล่าว [cite: 49]</li>
+                                <li>เปรียบเทียบผลสำเร็จที่ได้กับความต้องการที่กำหนดไว้ [cite: 50]</li>
+                            </ol>
+
+                            <h4>เป้าหมายของระบบการควบคุมการบำรุงรักษา</h4>
+                            <ol>
+                                <li>การควบคุมเพื่อให้การนำเอาทรัพยากรต่างๆ ที่มีอยู่มาใช้ประโยชน์ให้สูงสุด
+                                    ได้แก่ บุคลากร โรงบำรุงรักษา วัสดุ คุณสมบัติของเครื่องจักรอุปกรณ์ อะไหล่ ฯลฯ [cite:
+                                    50]</li>
+                                <li>การควบคุมกำลังการผลิตที่มีอยู่ให้มีประสิทธิภาพ ได้แก่
+                                    การควบคุมเครื่องจักรอุปกรณ์ที่ใช้ในการผลิต การใช้เงินลงทุนอย่างคุมค่า [cite: 50]
+                                </li>
+                            </ol>
+
+                            <h4>ระดับของการควบคุม</h4>
+                            <p>ระดับของการควบคุมแบ่งออกเป็น[cite: 51]:</p>
+                            <ol>
+                                <li>**การควบคุมเชิงกลยุทธ์ (The Strategical Control):**
+                                    ซึ่งเป็นเป้าหมายของกระบวนการทั้งหมด [cite: 52] (เช่น เป้าหมายโดยรวม
+                                    [cite: 53], การวางแผนระยะยาว [cite: 54], การวางแผนทรัพยากร
+                                    [cite: 55])</li>
+                                <li>**การควบคุมเชิงยุทธวิธี (The Tachtical Control):**
+                                    เป็นการนำเป้าหมายมาจัดทำงบประมาณ [cite: 56, 57] (เช่น งบประมาณ [cite:
+                                    58])</li>
+                                <li>**การควบคุมเชิงปฏิบัติการ (The Operative Control):**
+                                    เป็นการควบคุมการสั่งการเพื่อดำเนินไปตามกิจกรรมที่วางแผนไว้ [cite: 59, 60]
+                                    (เช่น เงิน [cite: 61], เวลาและวัสดุในเงื่อนไขที่ต่างกันออกไป
+                                    [cite: 62])</li>
+                                <li>**ระบบข่าวสารข้อมูล:** [cite: 63] (การเก็บข้อมูล [cite:
+                                    64], การประมวลผลข้อมูล [cite: 65], การจัดเก็บข้อมูล [cite:
+                                    66], การนำเสนอข้อมูล [cite: 67])</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div id="chapter9">
+                    <h2>บทที่ 9: การประยุกต์เทคนิควิศวกรรมและการวัดประสิทธิผล</h2>
+
+                    <div id="chapter9-1">
+                        <h3>9.1 เทคนิควิศวกรรม (Engineering Techniques) คืออะไร</h3>
+                        <p>**เทคนิควิศวกรรม** เป็นเทคนิควิธีการที่หัวหน้างานคิดค้นขึ้นเพื่อ ปรับปรุงงานด้าน
+                            การปฏิบัติงาน การบำรุงรักษา เพื่อเพิ่มประสิทธิภาพของแรงงานในสถานประกอบการณ์ของตน</p>
+
+                        <h4>เทคนิควิศวกรรมพื้นฐานมี 2 อย่าง</h4>
+                        <ol>
+                            <li>**การกำหนดเวลาที่ถูกต้อง:** ดูจากการปฏิบัติงานที่สูญเปล่าและการทำงานอย่างถูกต้องหรือไม่
+                            </li>
+                            <li>**เทคนิคการปรับปรุงงาน:** วิเคราะห์การทำงาน, วิเคราะห์การเคลื่อนไหว,
+                                การวิเคราะห์กระบวนการ, และวิธีการจัดระเบียบ</li>
+                        </ol>
+                    </div>
+                    <hr>
+
+                    <div id="chapter9-2">
+                        <h3>9.2 จุดสำคัญในการควบคุมสถานประกอบการตามหลักเทคนิควิศวกรรม</h3>
+                        <ol>
+                            <li>การกำหนดวิธีการทำงานที่เหมาะสม</li>
+                            <li>การให้การศึกษาเกี่ยวกับวิธีการทำงานตามมาตรฐาน</li>
+                            <li>การปรับเงื่อนไข (สภาวะ) การทำงาน</li>
+                            <li>การกำหนดเวลามาตรฐาน</li>
+                            <li>ความร่วมมือ</li>
+                        </ol>
+                    </div>
+                    <hr>
+
+                    <div id="chapter9-3">
+                        <h3>9.3 การวัดการทำงานในการบำรุงรักษาเครื่องจักรอุปกรณ์</h3>
+
+                        <h4>1. จุดมุ่งหมายในการวัดการทำงาน</h4>
+                        <p>การวัดผลการทำงานของพนักงานแต่ละคน เพื่อประเมินประสิทธิภาพในการทำงาน</p>
+
+                        <h4>2. การประเมินสภาพความเป็นจริงของงานบำรุงรักษา (การสุ่มงาน : WS Work Sampling)</h4>
+                        <h5>2.1 สิ่งที่ควรคำนึงถึง</h5>
+                        <ul>
+                            <li>กำหนดจุดมุ่งหมาย วัตถุประสงค์..</li>
+                            <li>ประเมินอัตราส่วนของงานต่างๆ ในฝ่ายงาน</li>
+                            <li>อธิบายให้ลูกน้องเข้าใจเพื่อขอความร่วมมือ</li>
+                            <li>กำหนดผู้รับผิดชอบ วางแผน ดำเนินการ และสรุปข้อมูล</li>
+                            <li>กำหนดหัวข้อที่จะประเมิน</li>
+                            <li>กำหนดระยะเวลา</li>
+                            <li>กำหนดแบบฟอร์มประเมิน</li>
+                            <li>นโยบายฝ่ายบ...</li>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div id="chapter9-4">
+                        <h3>9.4 การทำให้เป็นมาตรฐานเดียวกันเพื่อลดค่าใช้จ่ายอะไหล่</h3>
+
+                        <h4>มาตรการที่อาจนำมาใช้ในการลดค่าใช้จ่ายในชิ้นส่วนอะไหล่</h4>
+                        <p>การทำให้เป็นมาตรฐานเดียวกันเป็นมาตรการหนึ่งที่อาจนำมาใช้ในการลดค่าใช้จ่ายในชิ้นส่วนอะไหล่
+                            โดยมีมาตรการอื่น ๆ ได้แก่</p>
+                        <ol>
+                            <li>การบำรุงรักษาเชิงป้องกัน</li>
+                            <li>นโยบายการจัดซื้อเครื่องจักร</li>
+                            <li>การทำให้เป็นมาตรฐานและการเปลี่ยนใช้งานแทนกันได้</li>
+                            <li>การควบคุมของคลคลังของชิ้นอะไหล่ และการจัดหาโดยคำนึงถึง Lead time ของอะไหล่ชนิดต่างๆ</li>
+                        </ol>
+                    </div>
+                    <hr>
+
+                    <div id="chapter9-5">
+                        <h3>9.5 ประเภทของวัสดุเพื่อการบำรุงรักษา</h3>
+                        <p>เนื้อหาในส่วนนี้จะถูกเพิ่มเติมในภายหลัง</p>
+                    </div>
+                    <hr>
+
+                    <div id="chapter9-6">
+                        <h3>9.6 การวัดประสิทธิผล (Effectiveness Measurement)</h3>
+
+                        <h4>วัตถุประสงค์ของการวัดประสิทธิผล PM</h4>
+                        <p>เพื่อให้สามารถที่จะประเมินผลการทำงานจากการวัดประสิทธิผลของความพยายามในการปรับปรุงการทำงานได้อย่างถูกต้องสามารถยกระดับขวัญและกำลังใจของผู้ทำงานให้สูงขึ้น
+                            และทำให้การประเมินผลการทำงานโดยฝ่ายจัดการและฝ่ายที่เกี่ยวข้องสามารถทำได้
+                            ซึ่งจะทำให้ทราบซึ้งถึงความสำคัญของงานบำรุงรักษา</p>
+
+                        <h4>1. ข้อมูลเพื่อการควบคุมและข้อมูลทางด้านเทคนิค</h4>
+                        <p>ดัชนีในการวัดประสิทธิผลของ PM เช่น อัตราการเดินเครื่อง, อัตราความรุนแรงของการขัดข้อง,
+                            จำนวนครั้งของการบำรุงรักษาตามแผนการ หรือ ต้นทุนต่อหน่วยของการบำรุงรักษา</p>
+
+                        <h4>2. การวัดประสิทธิผลและวงจรการควบคุม</h4>
+                        <p>ข้อมูลในส่วนนี้จะถูกเพิ่มเติมในภายหลัง</p>
+
+                        <h4>3. การวัดประสิทธิผลและการยกระดับขวัญและกำลังใจ</h4>
+                        <p>เป็นข้อมูลที่สามารถนำมาใช้ทางจิตวิทยา เพื่อยกระดับขวัญและกำลังใจของผู้ทำงานให้สูงขึ้น</p>
+                    </div>
+                </div>
+            </div>
